@@ -162,6 +162,8 @@
                 <button id="startButton">Start Webcam</button>
                 <button id="stopButton">Stop Webcam</button>
                 <button id="capture-button">Capture Image</button>
+                <button id="startRecordingButton">Start Recording</button>
+                <button id="stopRecordingButton" disabled>Stop Recording</button>
             </div>
         </div>
 
@@ -178,17 +180,138 @@
         </div>
         <div class="section">
             <h2>Image</h2>
-            <img id="screenshot" alt="Captured Image">
+            <img id="screenshot" alt="Captured Image"><br>
             <button id="translateButton">Translate Sign Language</button>
             <div id="translationResult"></div>
         </div>
         <div class="section">
-            <h2>VIDEO</h2>
-            <img id="screenshot" alt="Captured Image">
-            <button id="translateButton">Translate Sign Language</button>
+            <h2>Video</h2>
+            <video id="recordedVideo" controls></video><br>
+            <button id="translateButton">Translate Video</button>
             <div id="translationResult"></div>
         </div>
     </div>
+    <!-- script start -->
+    <script>
+        // Elements
+        const videoElement = document.getElementById('videoElement');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const captureButton = document.getElementById('capture-button');
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const translateButton = document.getElementById('translateButton');
+        const translationResult = document.getElementById('translationResult');
+        const screenshotImg = document.getElementById('screenshot');
+        const recordedVideo = document.getElementById('recordedVideo');
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        const constraints = { video: true, audio: true };
+        startButton.addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then((stream) => {
+                    videoElement.srcObject = stream;
+                    startRecordingButton.disabled = false;
+                })
+                .catch((err) => console.error('Error accessing webcam: ', err));
+        });
+    
+       
+    
+        // Start Webcam
+        // startButton.addEventListener('click', () => {
+        //     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        //         .then((stream) => {
+        //             mediaStream = stream;
+        //             videoElement.srcObject = stream;
+        //         })
+        //         .catch((err) => {
+        //             console.error('Error accessing webcam: ', err);
+        //         });
+        // });
+    
+        // Stop Webcam
+        stopButton.addEventListener('click', () => {
+            const stream = videoElement.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            videoElement.srcObject = null;
+            startRecordingButton.disabled = true;
+            stopRecordingButton.disabled = true;
+        });
+    
+        // Capture Image
+        captureButton.addEventListener('click', () => {
+            if (videoElement.srcObject) {
+                const canvas = document.createElement('canvas');
+                canvas.width = videoElement.videoWidth;
+                canvas.height = videoElement.videoHeight;
+                canvas.getContext('2d').drawImage(videoElement, 0, 0);
+                const imageSrc = canvas.toDataURL('image/jpeg');
+                screenshotImg.src = imageSrc;
+                alert('Image captured successfully!');
+
+            } else {
+                alert('Webcam is not active.');
+            }
+        });
+    
+        // Upload Media
+        uploadButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                alert('File uploaded: ' + file.name);
+                // Here, you can add logic to process the uploaded file
+            } else {
+                alert('Please select a file to upload.');
+            }
+        });
+    
+        // Translate Sign Language
+        translateButton.addEventListener('click', () => {
+            if (screenshotImg.src || fileInput.files[0]) {
+                translationResult.textContent = 'Translating sign language...';
+                setTimeout(() => {
+                    translationResult.textContent = 'Translation complete!';
+                }, 2000);
+            } else {
+                alert('Please capture an image or upload a file first.');
+            }
+        });
+
+        // video capture
+        startRecordingButton.addEventListener('click', () => {
+            recordedChunks = [];
+            const options = { mimeType: 'video/webm; codecs=vp8' };
+            mediaRecorder = new MediaRecorder(videoElement.srcObject, options);
+            mediaRecorder.ondataavailable = (e) => {
+                if (e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                }
+            };
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                recordedVideo.src = URL.createObjectURL(blob);
+                recordedVideo.controls = true;
+                alert('Video recording stopped!');
+
+            };
+            mediaRecorder.start();
+            alert('Video recording started!');
+            startRecordingButton.disabled = true;
+            stopRecordingButton.disabled = false;
+        });
+
+        stopRecordingButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startRecordingButton.disabled = false;
+            stopRecordingButton.disabled = true;
+        });
+    </script>
+
+    
+     <!-- script end -->
        <!-- end video capturing -->
 
 </body>
