@@ -8519,6 +8519,7 @@ fieldset:disabled .btn {
 
 .mb-0 {
   margin-bottom: 0 !important;
+  text-align:center;
 }
 
 .mb-1 {
@@ -9072,6 +9073,7 @@ fieldset:disabled .btn {
 .py-2 {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
+  margin-top: -120px;
 }
 
 .py-3 {
@@ -12790,6 +12792,7 @@ fieldset:disabled .btn {
   }
   .text-md-start {
     text-align: left !important;
+    margin-top: 3rem;
   }
   .text-md-end {
     text-align: right !important;
@@ -18422,8 +18425,8 @@ ul {
 }
 
 .form-livedoc-control {
-  border: 1px solid rgba(13, 175, 202, 0.2);
-  border-radius: 1.25rem;
+  border: 1px solid rgb(40 55 121);
+  border-radius: 10px;
   color: #000;
   font-weight: 300;
   background-color: #FFFEFE;
@@ -18441,7 +18444,7 @@ ul {
 }
 
 .form-cta-control {
-  border: 1px solid rgba(240, 244, 249, 0.95);
+  border: 1px solid rgb(40 55 121);
   color: #B2DDED;
   background-color: transparent;
 }
@@ -18488,6 +18491,10 @@ ul {
 
 .navbar-light .navbar-nav .nav-link {
   color: #283779;
+  font-weight: 600;
+  font-family: Montserrat;
+  
+  
 }
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
