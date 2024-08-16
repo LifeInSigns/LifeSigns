@@ -150,18 +150,42 @@
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
             <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
-            <li class="nav-item px-2"><a class="nav-link" href="index.html#about">About Us</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="#about">About Us</a></li>
             <li class="nav-item px-2"><a class="nav-link" href="translation.html">Translation</a></li>
-            <li class="nav-item px-2"><a class="nav-link" href="index.html#hi">Contact</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="#hi">Contact</a></li>
           </ul>
           <a class="btn btn-sm btn-outline-primary rounded-pill order-1 order-lg-0 ms-lg-4" style="font-family: Montserrat;
           font-weight: 700;"  href="signin.html">Sign In</a>
         </div>
       </div>
     </nav>
-        <section class="py-xxl-10 pb-0" id="home">
-          <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/hero-bg.png);background-position:top center;background-size:cover;">
+    
+        <section class="py-xxl-5 pb-0" id="home">
+          <div class="bg-holder bg-size"
+            style="background-image:url(assets/img/gallery/hero-bg.png);background-position:top center;background-size:cover;">
           </div>
+          <!--/.bg-holder-->
+    
+          <div class="container">
+            <div class="row min-vh-xl-100 min-vh-xxl-25">
+              <!--<div class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end">
+                <img src="assets/img/gallery/image3.png" alt="hero-header"
+                  style="width: 120%; height: auto; border-radius: 15%; display: block; margin: 0 auto 0 -10%;" />
+    
+    
+              </div>-->
+              <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-left py-3">
+                <div class="col-xl-12 col-md-12 col-sm-12 single-footer-widget text-left" data-aos="fade-right"
+                  data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                  <h1 class="fw-light font-base fs-6 fs-xxl-7 mb-4" style="font-family: Montserrat;">Start <strong>translating
+                    </strong>now<br />your&nbsp;<strong>for better life.</strong></h1>
+                    
+                  <a class="btn btn-lg btn-primary rounded-pill mt-4" style="font-family: Montserrat; font-weight: 700;" href="translation.html" role="button">Start Translating</a>
+    
+                </div>
+              </div>
+            </div>
+    
         </section>
       </main>
 
@@ -186,11 +210,7 @@
             <button id="uploadButton">Upload</button>
         </div>
 
-        <div class="section">
-            <h2>Translation</h2>
-            <button id="translateButton">Translate Sign Language</button>
-            <div id="translationResult"></div>
-        </div>
+        
         <div class="section">
             <h2>Image</h2>
             <img id="screenshot" alt="Captured Image"><br>
@@ -203,6 +223,68 @@
             <button id="translateButton">Translate Video</button>
             <div id="translationResult"></div>
         </div>
+        <div class="section">
+            <h2>Translation</h2>
+            <button id="translateButton">Translate Sign Language</button>
+            <div id="translationResult"></div>
+        </div>
+        <div class=" pt-5 pb-5 footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-5 col-xs-12 about-company">
+                  <h2 style="font-family: Montserrat; color:white; font-weight:500;">LifeInSigns</h2><br>
+                  <p class="pr-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
+                  <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+                </div>
+                <div class="col-lg-3 col-xs-12 links">
+                  <h4 class="mt-lg-0 mt-sm-3" style="font-family: Montserrat; color:white">Links</h4><br>
+                    <ul class="m-0 p-0">
+                      <li> <a href="#">Lorem ipsum</a></li>
+                      <li> <a href="#">Nam mauris velit</a></li>
+                      <li> <a href="#">Etiam vitae mauris</a></li>
+                      <li> <a href="#">Fusce scelerisque</a></li>
+                      <li> <a href="#">Sed faucibus</a></li>
+                      <li> <a href="#">Mauris efficitur nulla</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-xs-12 location">
+                  <h4 class="mt-lg-0 mt-sm-4" style="font-family: Montserrat; color:white">Location</h4><br>
+                  <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
+                  <p>(541) 754-3010</p>
+                  <p>info@hsdf.com</p>
+                </div>
+                
+              </div>
+              <div class="row mt-5">
+                <div class="col copyright">
+                  <p class=""><small class="text-white-50">© 2024. All Rights Reserved.</small></p>
+                </div>
+              </div>
+            </div>
+            
+            
+            
+              <!-- ===============================================-->
+              <!--    JavaScripts-->
+              <!-- ===============================================-->
+              <script src="vendors/@popperjs/popper.min.js"></script>
+              <script src="vendors/bootstrap/bootstrap.min.js"></script>
+              <script src="vendors/is/is.min.js"></script>
+              <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+              <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+              <script src="vendors/fontawesome/all.min.js"></script>
+              <script src="assets/js/theme.js"></script>
+              <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+              <script>
+                AOS.init();
+              </script>
+            
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <link
+                href="https://fonts.googleapis.com/css2?family=Fjalla+One&amp;family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&amp;display=swap"
+                rel="stylesheet">
     </div>
     <!-- script start -->
     <script>
