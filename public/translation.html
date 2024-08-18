@@ -38,88 +38,169 @@
 
         <style>
             :root {
-                --primary-color: #4a90e2;
-                --secondary-color: #f5a623;
-                --background-color: #f0f4f8;
-                --text-color: #333;
-                --border-radius: 8px;
-            }
-        
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background-color: var(--background-color);
-                color: var(--text-color);
-                line-height: 1.6;
-                margin: 0;
-                padding: 0;
-            }
-        
-            .container {
-                max-width: 1000px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-        
-        
-        
-            h2 {
-                color: var(--primary-color);
-                border-bottom: 2px solid var(--primary-color);
-                padding-bottom: 10px;
-                margin-top: 0;
-            }
-        
-            .section {
-                background-color: white;
-                margin-bottom: 30px;
-                padding: 25px;
-                border-radius: var(--border-radius);
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-        
-            #videoElement {
-                width: 100%;
-                max-width: 640px;
-                height: auto;
-                border-radius: var(--border-radius);
-                margin-bottom: 20px;
-            }
-        
-            .button-group {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-bottom: 20px;
-            }
-        
-            button {
-                padding: 12px 20px;
-                font-size: 1em;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: var(--border-radius);
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-        
-            button:hover {
-                background-color: #3a7bc8;
-            }
-        
-            input[type="file"] {
-                margin-bottom: 15px;
-            }
-        
-            #translationResult {
-                margin-top: 20px;
-                font-size: 1.2em;
-                font-weight: bold;
-                padding: 15px;
-                background-color: #e8f4fd;
-                border-radius: var(--border-radius);
-                border-left: 5px solid var(--primary-color);
-            }
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623;
+    --background-color: #f0f4f8;
+    --text-color: #333;
+    --border-radius: 8px;
+    --button-gradient: linear-gradient(135deg, #4a90e2, #3a7bc8);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.section {
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#videoElement {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 1em;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px; /* Rounded pill-shaped buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for a floating effect */
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+}
+
+button:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Increased gap for a cleaner layout */
+    justify-content: center; /* Center the buttons */
+    margin-bottom: 20px;
+}
+
+/* Symbol styling */
+button#startButton::before {
+    content: '🎥';
+    margin-right: 10px;
+}
+
+button#stopButton::before {
+    content: '⛔';
+    margin-right: 10px;
+}
+
+button#capture-button::before {
+    content: '📸';
+    margin-right: 10px;
+}
+
+button#startRecordingButton::before {
+    content: '🔴';
+    margin-right: 10px;
+}
+
+button#stopRecordingButton::before {
+    content: '🛑';
+    margin-right: 10px;
+}
+
+input[type="file"] {
+    margin-bottom: 15px;
+}
+
+#translationResult {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #e8f4fd;
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--primary-color);
+    transition: background-color 0.3s ease;
+}
+
+#screenshot,
+#recordedVideo {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#screenshot.show,
+#recordedVideo.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
         
             @media (max-width: 768px) {
                 .container {
@@ -190,43 +271,51 @@
       </main>
 
       <!-- video capturing -->
-
-      <div class="container" id="live">
+      <section id="live"></section>
+      <div class="container">
         <div class="section">
-            <h2>Live Webcam</h2>
+            <h2>Live Translation</h2>
             <video id="videoElement" autoplay></video>
             <div class="button-group">
-                <button id="startButton">Start Webcam</button>
-                <button id="stopButton">Stop Webcam</button>
-                <button id="capture-button">Capture Image</button>
-                <button id="startRecordingButton">Start Recording</button>
-                <button id="stopRecordingButton" disabled>Stop Recording</button>
+                <button id="startButton" title="Start Webcam"><i class="fas fa-play"></i> Start Webcam</button>
+                <button id="stopButton" title="Stop Webcam" style="display:none;"><i class="fas fa-stop"></i> Stop Webcam</button>
+                <button id="startRecordingButton" title="Start Recording" style="display:none;"><i class="fas fa-circle"></i> Start Recording</button>
+                <button id="stopRecordingButton" title="Stop Recording" style="display:none;"><i class="fas fa-square"></i> Stop Recording</button>
+                <button id="captureButton" title="Capture Image" style="display:none;"><i class="fas fa-camera"></i> Capture Image</button>
             </div>
         </div>
-
+        
         <div class="section">
-            <h2>Upload Media</h2>
+            <h2>Upload Media and Translate</h2>
             <input type="file" id="fileInput" accept="image/*,video/*,audio/*">
-            <button id="uploadButton">Upload</button>
-            
-            <button id="translateButton">Translate Sign Language</button>
+            <button id="uploadButton"><i class="fas fa-upload"></i> Upload</button><br>
+            <button id="translateButton"><i class="fas fa-language"></i> Translate Sign Language</button>
             <div id="translationResult"></div>
         </div>
+        <div class="section">
+            <h2>Captured Image</h2>
+            <img id="screenshot" alt="Captured Image" style="display:none;"><br>
+            <button id="translateButton"><i class="fas fa-language"></i> Translate Sign Language</button>
+            <div id="translationResult"></div>
+        </div>
+    
+        <div class="section">
+            <h2>Recorded Video</h2>
+            <video id="recordedVideo" controls style="display:none;"></video><br>
+            <button id="translateButton"><i class="fas fa-language"></i> Translate Sign Language</button>
+            <div id="translationResult"></div>
+        </div>
+    
+        
+    
+        <div class="section">
+            <h2>Translation</h2>
+            <button id="translateButton"><i class="fas fa-language"></i> Translate Sign Language</button>
+            <div id="translationResult"></div>
+        </div>
+    </div>
+    <!-- end video capturing -->
 
-        
-        <div class="section">
-            <h2>Image</h2>
-            <img id="screenshot" alt="Captured Image"><br>
-            <button id="translateButton">Translate Sign Language</button>
-            <div id="translationResult"></div>
-        </div>
-        <div class="section">
-            <h2>Video</h2>
-            <video id="recordedVideo" controls></video><br>
-            <button id="translateButton">Translate Video</button>
-            <div id="translationResult"></div>
-        </div>
-        
         <div class=" pt-5 pb-5 footer">
             <div class="container">
               <div class="row">
@@ -288,120 +377,128 @@
     <!-- script start -->
     <script>
         // Elements
-        const videoElement = document.getElementById('videoElement');
-        const startButton = document.getElementById('startButton');
-        const stopButton = document.getElementById('stopButton');
-        const captureButton = document.getElementById('capture-button');
-        const fileInput = document.getElementById('fileInput');
-        const uploadButton = document.getElementById('uploadButton');
-        const translateButton = document.getElementById('translateButton');
-        const translationResult = document.getElementById('translationResult');
-        const screenshotImg = document.getElementById('screenshot');
-        const recordedVideo = document.getElementById('recordedVideo');
-        let mediaRecorder;
-        let recordedChunks = [];
+const videoElement = document.getElementById('videoElement');
+const startButton = document.getElementById('startButton');
+const stopButton = document.getElementById('stopButton');
+const captureButton = document.getElementById('captureButton');
+const uploadButton = document.getElementById('uploadButton');
 
-        const constraints = { video: true, audio: true };
-        startButton.addEventListener('click', () => {
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then((stream) => {
-                    videoElement.srcObject = stream;
-                    startRecordingButton.disabled = false;
-                })
-                .catch((err) => console.error('Error accessing webcam: ', err));
-        });
-    
-       
-    
-        // Start Webcam
-        // startButton.addEventListener('click', () => {
-        //     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-        //         .then((stream) => {
-        //             mediaStream = stream;
-        //             videoElement.srcObject = stream;
-        //         })
-        //         .catch((err) => {
-        //             console.error('Error accessing webcam: ', err);
-        //         });
-        // });
-    
-        // Stop Webcam
-        stopButton.addEventListener('click', () => {
-            const stream = videoElement.srcObject;
-            const tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            videoElement.srcObject = null;
-            startRecordingButton.disabled = true;
-            stopRecordingButton.disabled = true;
-        });
-    
-        // Capture Image
-        captureButton.addEventListener('click', () => {
-            if (videoElement.srcObject) {
-                const canvas = document.createElement('canvas');
-                canvas.width = videoElement.videoWidth;
-                canvas.height = videoElement.videoHeight;
-                canvas.getContext('2d').drawImage(videoElement, 0, 0);
-                const imageSrc = canvas.toDataURL('image/jpeg');
-                screenshotImg.src = imageSrc;
-                alert('Image captured successfully!');
+const screenshot = document.getElementById('screenshot');
+const startRecordingButton = document.getElementById('startRecordingButton');
+const stopRecordingButton = document.getElementById('stopRecordingButton');
+const recordedVideo = document.getElementById('recordedVideo');
 
+let mediaRecorder;
+let recordedChunks = [];
+
+startButton.addEventListener('click', async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    videoElement.srcObject = stream;
+
+    // Show the relevant buttons after starting the webcam
+    stopButton.style.display = 'inline-block';
+    startRecordingButton.style.display = 'inline-block';
+    captureButton.style.display = 'inline-block';
+    startButton.style.display = 'none';
+});
+
+stopButton.addEventListener('click', () => {
+    const stream = videoElement.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach(track => track.stop());
+    videoElement.srcObject = null;
+
+    stopButton.style.display = 'none';
+    startRecordingButton.style.display = 'none';
+    stopRecordingButton.style.display = 'none';
+    captureButton.style.display = 'none';
+    startButton.style.display = 'inline-block';
+});
+
+captureButton.addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    canvas.getContext('2d').drawImage(videoElement, 0, 0);
+
+    screenshot.src = canvas.toDataURL('image/png');
+    screenshot.style.display = 'block';
+    screenshot.classList.add('show');
+
+    alert('Image captured successfully!');
+});
+
+startRecordingButton.addEventListener('click', () => {
+    recordedChunks = [];
+    const options = { mimeType: 'video/webm; codecs=vp9' };
+    mediaRecorder = new MediaRecorder(videoElement.srcObject, options);
+
+    mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+            recordedChunks.push(event.data);
+        }
+    };
+
+    mediaRecorder.onstop = () => {
+    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+    const url = URL.createObjectURL(blob);
+    recordedVideo.src = url;
+    recordedVideo.style.display = 'block';
+    recordedVideo.classList.add('show');
+    alert('Video recording stopped!');
+};
+
+    mediaRecorder.start();
+    alert('Video recording started!');
+
+    startRecordingButton.style.display = 'none';
+    stopRecordingButton.style.display = 'inline-block';
+});
+
+stopRecordingButton.addEventListener('click', () => {
+    mediaRecorder.stop();
+
+    stopRecordingButton.style.display = 'none';
+    startRecordingButton.style.display = 'inline-block';
+});
+
+uploadButton.addEventListener('click', () => {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a file to upload.');
+        return;
+    }
+// Simulate an upload process
+const formData = new FormData();
+    formData.append('file', file);
+
+    // Simulated upload function
+    fakeUploadFunction(formData)
+        .then(() => {
+            alert('Media uploaded successfully!');
+        })
+        .catch(() => {
+            alert('Failed to upload media. Please try again.');
+        });
+});
+
+// Simulate a fake upload function
+function fakeUploadFunction(formData) {
+    return new Promise((resolve, reject) => {
+        // Simulate an async upload process
+        setTimeout(() => {
+            // Simulate successful upload with 90% probability
+            if (Math.random() > 0.1) {
+                resolve();
             } else {
-                alert('Webcam is not active.');
+                reject();
             }
-        });
-    
-        // Upload Media
-        uploadButton.addEventListener('click', () => {
-            const file = fileInput.files[0];
-            if (file) {
-                alert('File uploaded: ' + file.name);
-                // Here, you can add logic to process the uploaded file
-            } else {
-                alert('Please select a file to upload.');
-            }
-        });
-    
-        // Translate Sign Language
-        translateButton.addEventListener('click', () => {
-            if (screenshotImg.src || fileInput.files[0]) {
-                translationResult.textContent = 'Translating sign language...';
-                setTimeout(() => {
-                    translationResult.textContent = 'Translation complete!';
-                }, 2000);
-            } else {
-                alert('Please capture an image or upload a file first.');
-            }
-        });
-
-        // video capture
-        startRecordingButton.addEventListener('click', () => {
-            recordedChunks = [];
-            const options = { mimeType: 'video/webm; codecs=vp8' };
-            mediaRecorder = new MediaRecorder(videoElement.srcObject, options);
-            mediaRecorder.ondataavailable = (e) => {
-                if (e.data.size > 0) {
-                    recordedChunks.push(e.data);
-                }
-            };
-            mediaRecorder.onstop = () => {
-                const blob = new Blob(recordedChunks, { type: 'video/webm' });
-                recordedVideo.src = URL.createObjectURL(blob);
-                recordedVideo.controls = true;
-                alert('Video recording stopped!');
-
-            };
-            mediaRecorder.start();
-            alert('Video recording started!');
-            startRecordingButton.disabled = true;
-            stopRecordingButton.disabled = false;
-        });
-
-        stopRecordingButton.addEventListener('click', () => {
-            mediaRecorder.stop();
-            startRecordingButton.disabled = false;
-            stopRecordingButton.disabled = true;
-        });
+        }, 1000); // Simulate 1-second upload delay
+    });
+}
     </script>
 
     
